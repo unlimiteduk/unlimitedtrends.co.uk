@@ -18,22 +18,22 @@ const images = {
 };
 
 const intakeRows = [
-  "2026-09-14 · 240× IPAD AIR 4 · GRADE B/C · MANCHESTER · SETTLED",
-  "2026-09-11 · 96× MACBOOK PRO M1 · MIXED FAULT · LEEDS · SETTLED",
-  "2026-09-09 · 412× IPHONE 13 · GRADE A/B · BRISTOL · SETTLED",
-  "2026-09-06 · 58× IMAC 24-IN · GRADE C · GLASGOW · SETTLED",
+  "SURPLUS STOCK · USED DEVICES · MIXED CONDITION",
+  "IPADS · IPHONES · MACBOOKS · IMACS",
+  "WORKING OR FAULTY · CONDITION CHECKED BEFORE OFFER",
+  "UK COLLECTION · PAYMENT BY BANK TRANSFER",
 ];
 
 const procurementRows = [
   ["01", "iPads", "Wi‑Fi / Cellular · 6th gen onward · any colour"],
   ["02", "MacBooks", "Intel + Apple silicon · 2018 onward · mixed condition"],
-  ["03", "iMac & Mac mini", "2019 onward · base / upgraded · bench tested"],
+  ["03", "iMac & Mac mini", "2019 onward · standard or upgraded specifications"],
   [
     "04",
     "iPhone 11–16",
-    "Unlocked preferred · screen / housing grades accepted",
+    "Unlocked preferred · screen or casing damage considered",
   ],
-  ["05", "Apple Watch", "Series 5 onward · strap / charger variance logged"],
+  ["05", "Apple Watch", "Series 5 onward · with or without straps and chargers"],
   ["06", "Accessories", "Magic keyboard · chargers · docks · boxed or loose"],
 ];
 
@@ -41,32 +41,32 @@ const faqRows = [
   [
     "01",
     "Do you take iCloud-locked devices?",
-    "No. We only purchase devices that can be signed out or are demonstrably ready for secure wipe. Lock status is recorded in the manifest and checked during serial review.",
+    "No. Devices must be signed out of iCloud and ready to erase. Please check the lock status before sending your stock list.",
   ],
   [
     "02",
-    "How is pricing calculated?",
-    "We price against model, specification, cosmetic grade, functional status, lock status and current channel demand. A written offer follows serial-level review.",
+    "How do you price the devices?",
+    "We consider the model, specification, condition, faults and current resale value. Once we have reviewed your list, we send you a written offer.",
   ],
   [
     "03",
     "Who handles collection?",
-    "For accepted lots we arrange collection with our carrier network or work with your nominated logistics partner. Collection windows are agreed in the written offer.",
+    "We arrange collection for agreed purchases. If you prefer to use your own carrier, let us know. We agree the date and arrangements with you first.",
   ],
   [
     "04",
-    "When is payment released?",
-    "Settlement is made by BACS on collection, subject to the agreed reconciliation and any variance already documented in the offer.",
+    "When will I be paid?",
+    "Payment is by BACS on collection, subject to the checks and terms in our written offer. We confirm these details before you accept.",
   ],
   [
     "05",
-    "What if the intake differs from the manifest?",
-    "We flag variance by serial and grade, share the reconciliation, and resolve against the written offer before the final settlement record is closed.",
+    "What if the devices differ from my list?",
+    "We tell you about any differences in quantity, model or condition and agree how to resolve them under the offer terms before completing payment.",
   ],
   [
     "06",
     "Can you sign an NDA?",
-    "Yes. Send the NDA with your manifest or ask for our standard mutual NDA before sharing sensitive lot information.",
+    "Yes. Send us your NDA or ask for our mutual NDA before sharing confidential stock or business information.",
   ],
 ];
 
@@ -87,8 +87,6 @@ function SectionMeta({
 }) {
   return (
     <div className={`section-meta ${dark ? "section-meta-dark" : ""}`}>
-      <span>{code}</span>
-      <i aria-hidden="true" />
       <span>{children}</span>
     </div>
   );
@@ -107,8 +105,6 @@ function EvidenceCaption({
 }) {
   return (
     <div className={`evidence-caption ${dark ? "evidence-caption-dark" : ""}`}>
-      <span>{code}</span>
-      <span>{date}</span>
       <span>{label}</span>
     </div>
   );
@@ -144,27 +140,11 @@ function AppNav({
   open: boolean;
   setOpen: (value: boolean) => void;
 }) {
-  const [time, setTime] = useState("");
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Europe/London",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        }).format(new Date())
-      );
-    tick();
-    const timer = window.setInterval(tick, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
   return (
     <header className="site-nav">
       <div className="nav-status">
-        <span>UK / {time || "--:--:--"}</span>
-        <b>DESK OPEN</b>
+        <span>London, UK</span>
+        <b>Apple device buyers</b>
       </div>
       <a
         className="wordmark"
@@ -176,16 +156,16 @@ function AppNav({
       </a>
       <nav className={`nav-links ${open ? "nav-links-open" : ""}`}>
         <a href="#intake-brief" onClick={() => setOpen(false)}>
-          Intake brief
+          Selling to us
         </a>
         <a href="#procure" onClick={() => setOpen(false)}>
-          What we procure
+          What we buy
         </a>
         <a href="#process" onClick={() => setOpen(false)}>
-          Process
+          How it works
         </a>
         <a href="#evidence" onClick={() => setOpen(false)}>
-          Evidence
+          Testing & data
         </a>
       </nav>
       <button
@@ -195,7 +175,7 @@ function AppNav({
           scrollToId("submission");
         }}
       >
-        Submit a manifest <ArrowUpRight size={15} />
+        Get a quote <ArrowUpRight size={15} />
       </button>
       <button
         className="menu-button"
@@ -212,34 +192,34 @@ function Hero() {
   return (
     <section className="hero section-light" id="top">
       <div className="hero-aside">
-        <SectionMeta code="SEC 01" children="PROCUREMENT" />
-        <span className="hero-index">01—13</span>
+        <SectionMeta code="SEC 01" children="APPLE DEVICE BUYERS" />
+
       </div>
       <div className="hero-copy">
-        <div className="eyebrow">BUYER / APPLE HARDWARE / UK</div>
+        <div className="eyebrow">SELL YOUR APPLE STOCK</div>
         <h1>
-          We buy the
+          We buy
           <br />
-          Apple stock
+          Apple devices
           <br />
-          <em>others decline.</em>
+          <em>in bulk.</em>
         </h1>
         <p className="hero-lede">
-          Bulk lots from the people who already know what is in them. 25–500+
-          Apple devices, reviewed at serial level, collected on your timeline.
+          Selling surplus, used or faulty Apple devices? Send us your stock list.
+          We review the models and condition, agree a price and arrange collection.
         </p>
         <div className="hero-actions">
           <RuleButton onClick={() => scrollToId("submission")}>
-            Submit a manifest
+            Get a quote
           </RuleButton>
           <a className="text-link" href="#process">
-            See how intake works <ArrowUpRight size={17} />
+            How selling works <ArrowUpRight size={17} />
           </a>
         </div>
         <div className="spec-row">
           <span>LOTS 25–500+</span>
           <i /> <span>REVIEW 24–48H</span>
-          <i /> <span>SETTLEMENT BACS ON COLLECTION</span>
+          <i /> <span>BACS PAYMENT ON COLLECTION</span>
           <i /> <span>GRADES A–D + BER</span>
         </div>
       </div>
@@ -248,11 +228,11 @@ function Hero() {
           src={images.hero}
           alt="Technician hands working on a MacBook logic board under a bench lamp"
         />
-        <div className="hero-image-marker">EVIDENCE / 01</div>
+        <div className="hero-image-marker">APPLE DEVICE REPAIRS</div>
         <EvidenceCaption
           code="LAB-04"
           date="18.09.26"
-          label="logic board / bench review"
+          label="MacBook logic board repair"
         />
       </figure>
     </section>
@@ -263,12 +243,12 @@ function IntakeStrip() {
   return (
     <section
       className="intake-strip"
-      aria-label="Recent representative intake records"
+      aria-label="Apple stock we consider"
     >
       <div className="intake-kicker">
-        LIVE INTAKE
+        WE BUY
         <br />
-        <span>REPRESENTATIVE RECORDS</span>
+        <span>APPLE DEVICES IN BULK</span>
       </div>
       <div className="marquee-window">
         <div className="marquee-track">
@@ -291,46 +271,46 @@ function IntakeBrief() {
   return (
     <section className="section-light intake-brief-section" id="intake-brief">
       <div className="section-shell intake-brief-shell">
-        <SectionMeta code="SEC 04" children="INTAKE BRIEF" />
+        <SectionMeta code="SEC 04" children="SELLING TO US" />
         <div className="brief-heading">
           <div>
-            <div className="eyebrow">ROUGH-CUT / BUYING DESK NOTES</div>
+            <div className="eyebrow">WHAT WE NEED TO KNOW</div>
             <h2>
-              Show us the
+              Tell us
               <br />
-              <em>shape</em> of the lot.
+              <em>what you have.</em>
             </h2>
           </div>
           <p>
-            Not a calculator. A clear read on the information that turns a pile
-            of Apple hardware into a lot we can actually buy.
+            A simple stock list helps us give you a useful quote. Include the
+            device models, quantities, condition and collection location.
           </p>
         </div>
         <div className="brief-ledger">
           <div className="brief-lead-cell">
-            <span className="data-label">THE SHORT VERSION</span>
+            <span className="data-label">START WITH A STOCK LIST</span>
             <strong>
-              Volume is useful.
+              Send us
               <br />
-              <em>Specificity is leverage.</em>
+              <em>your stock list.</em>
             </strong>
             <p>
-              If you have the serials, the condition mix and a realistic
-              collection point, you are already ahead of the queue.
+              Add serial numbers if you have them, and let us know about any
+              faults. The more we know, the more accurately we can price your stock.
             </p>
             <RuleButton onClick={() => scrollToId("submission")}>
-              Send the lot through
+              Send your stock list
             </RuleButton>
           </div>
           <div className="brief-gates">
             <article className="brief-gate">
               <span className="gate-index">01</span>
               <div>
-                <span className="data-label">IDENTITY</span>
+                <span className="data-label">DEVICES</span>
                 <h3>What is it?</h3>
                 <p>
-                  Model, storage, connectivity and serial. A manifest that names
-                  the hardware lets us move from “interesting” to “reviewable”.
+                  List the models, storage sizes and quantities. For iPads, include
+                  whether they are Wi-Fi or cellular. Add serial numbers where available.
                 </p>
                 <div className="gate-mark">SERIAL / MODEL / SPEC</div>
               </div>
@@ -339,10 +319,10 @@ function IntakeBrief() {
               <span className="gate-index">02</span>
               <div>
                 <span className="data-label">CONDITION</span>
-                <h3>What state is it in?</h3>
+                <h3>What condition is it in?</h3>
                 <p>
-                  A–D, BER, battery notes, screen damage and lock status. Mixed
-                  lots are fine when the variance is visible.
+                  Tell us about battery health, screen damage and other faults.
+                  Mixed conditions are welcome. Devices must be free of iCloud locks.
                 </p>
                 <div className="gate-mark">GRADE / LOCK / FAULT</div>
               </div>
@@ -350,11 +330,11 @@ function IntakeBrief() {
             <article className="brief-gate">
               <span className="gate-index">03</span>
               <div>
-                <span className="data-label">MOVEMENT</span>
-                <h3>How does it leave?</h3>
+                <span className="data-label">COLLECTION</span>
+                <h3>Where is the stock?</h3>
                 <p>
-                  Location, pallet or tote count and the collection window. We
-                  price the lot, then plan the handover around the real world.
+                  Share the collection postcode, how the stock is packed and any
+                  deadline. We agree the collection details with you before booking.
                 </p>
                 <div className="gate-mark">LOCATION / QTY / DATE</div>
               </div>
@@ -363,8 +343,8 @@ function IntakeBrief() {
         </div>
         <div className="manifest-specimen">
           <div className="specimen-top">
-            <span>MANIFEST / EXAMPLE ROW</span>
-            <span>UT-INTAKE-240 / 18.09.26</span>
+            <span>EXAMPLE STOCK LIST</span>
+            <span>TWO SAMPLE ENTRIES</span>
           </div>
           <div className="specimen-row">
             <b>001</b>
@@ -383,8 +363,8 @@ function IntakeBrief() {
             <span>LEEDS</span>
           </div>
           <div className="specimen-footer">
-            <span>ONE GOOD ROW BEATS A VAGUE SPREADSHEET</span>
-            <span>CSV / XLSX / SERIAL-LEVEL REVIEW</span>
+            <span>ONE DEVICE PER ROW, WHERE POSSIBLE</span>
+            <span>CSV OR EXCEL</span>
           </div>
         </div>
       </div>
@@ -396,16 +376,16 @@ function ProcurementIndex() {
   return (
     <section className="section-light procurement-section" id="procure">
       <div className="section-shell">
-        <SectionMeta code="SEC 05" children="WHAT WE PROCURE" />
+        <SectionMeta code="SEC 05" children="WHAT WE BUY" />
         <div className="procure-header">
           <h2>
-            Whole lots.
+            Apple stock,
             <br />
-            <em>Specific appetite.</em>
+            <em>working or faulty.</em>
           </h2>
           <p>
-            We are not a consumer shop. We buy structured volume from
-            professional sellers and move it through an operational intake.
+            We buy in bulk from businesses, IT suppliers, recyclers and
+            liquidators. Send us a single model or a mixed batch of Apple devices.
           </p>
         </div>
         <div className="procure-list">
@@ -425,15 +405,15 @@ function ProcurementIndex() {
 
 function Capacity() {
   const stats = [
-    ["4,000", "DEVICES / MONTHLY INTAKE CAPACITY"],
+    ["4,000", "DEVICES PER MONTH · CAPACITY"],
     ["12", "REPAIR BENCHES IN USE"],
-    ["36", "HOURS / AVERAGE MANIFEST RESPONSE"],
+    ["36", "HOURS · AVERAGE QUOTE RESPONSE"],
     ["14", "YEARS TRADING"],
   ];
   return (
     <section className="capacity-section section-dark">
       <div className="section-shell">
-        <SectionMeta code="SEC 06" children="CAPACITY IN NUMBERS" dark />
+        <SectionMeta code="SEC 06" children="OUR BUSINESS" dark />
         <div className="capacity-grid">
           {stats.map(([number, label]) => (
             <div className="capacity-cell" key={label}>
@@ -452,8 +432,8 @@ function Capacity() {
           ))}
         </div>
         <div className="capacity-foot">
-          <span>MEASURED / 12 MONTH ROLLING AVERAGE</span>
-          <span>UPDATED 18.09.26 / 17:52 GMT</span>
+          <span>BULK BUYING, TESTING & REPAIRS</span>
+          <span>CONTACT US ABOUT LARGER QUANTITIES</span>
         </div>
       </div>
     </section>
@@ -464,48 +444,48 @@ function Process() {
   const steps = [
     [
       "01",
-      "UPLOAD MANIFEST",
-      "Send a CSV or XLSX with model, serial, condition, lock status and location.",
-      "≤ 2 HRS",
+      "SEND YOUR STOCK LIST",
+      "Send a CSV or Excel file with models, quantities, condition and collection details.",
+      "STEP 1",
     ],
     [
       "02",
-      "SERIAL-LEVEL REVIEW",
-      "We review the shape of the lot, ask the missing questions, and return a clear written position.",
+      "WE REVIEW YOUR STOCK",
+      "We check the list and contact you if we need more information to price it.",
       "24–48 HRS",
     ],
     [
       "03",
-      "BINDING WRITTEN OFFER",
-      "The offer records grade mix, variance rules, collection window and settlement terms.",
+      "AGREE A PRICE",
+      "Our written offer sets out the price, the expected condition and the collection and payment details.",
       "IN WRITING",
     ],
     [
       "04",
-      "COLLECTION / PAYMENT",
-      "Collection is booked, the manifest is reconciled against intake, and BACS is released on collection.",
+      "COLLECTION & PAYMENT",
+      "We arrange collection, check the devices against the agreed list and pay by BACS under the offer terms.",
       "BACS / COLLECTION",
     ],
   ];
   return (
     <section className="section-light process-section" id="process">
       <div className="section-shell">
-        <SectionMeta code="SEC 07" children="PROCESS / FOUR GATES" />
+        <SectionMeta code="SEC 07" children="HOW IT WORKS" />
         <div className="process-intro">
           <h2>
-            Less theatre.
+            From stock list
             <br />
-            <em>More traceability.</em>
+            <em>to payment.</em>
           </h2>
           <p>
-            A purchasing process built for people who need an answer, not
-            another portal login.
+            Four straightforward steps. You know what we need, what we are
+            offering and when your stock will be collected.
           </p>
         </div>
         <div className="process-list">
           {steps.map(([code, name, copy, time], i) => (
             <div className="process-row" key={code}>
-              <span className="process-code">{code} / GATE</span>
+              <span className="process-code">{code}</span>
               <div className="process-name">
                 <strong>{name}</strong>
                 <p>{copy}</p>
@@ -524,24 +504,24 @@ function Process() {
 
 function OperationGallery() {
   const tiles = [
-    [images.ipads, "INTAKE-02", "18.09.26", "iPad rows / anti-static mat"],
-    [images.totes, "RACK-07", "16.09.26", "tote / chain-of-custody hold"],
-    [images.monitor, "LAB-02", "18.09.26", "diagnostics / screen evidence"],
-    [images.pallet, "DOCK-01", "14.09.26", "pallet / collection ready"],
-    [images.hero, "BENCH-04", "18.09.26", "logic board / component review"],
-    [images.ipads, "INTAKE-05", "12.09.26", "serial capture / close range"],
+    [images.ipads, "INTAKE-02", "18.09.26", "iPads ready for testing"],
+    [images.totes, "RACK-07", "16.09.26", "Devices stored for processing"],
+    [images.monitor, "LAB-02", "18.09.26", "Device testing"],
+    [images.pallet, "DOCK-01", "14.09.26", "Stock prepared for collection"],
+    [images.hero, "BENCH-04", "18.09.26", "MacBook component checks"],
+    [images.ipads, "INTAKE-05", "12.09.26", "Checking device details"],
   ];
   return (
     <section className="section-light gallery-section">
       <div className="section-shell">
-        <SectionMeta code="SEC 08" children="INSIDE THE OPERATION" />
+        <SectionMeta code="SEC 08" children="OUR WORK" />
         <div className="gallery-heading">
           <h2>
-            What the
+            Testing, repairs
             <br />
-            <em>paperwork</em> points to.
+            <em>and preparation.</em>
           </h2>
-          <span>EXHIBIT INDEX / 06 FRAMES</span>
+          <span>TESTING, REPAIRS & COLLECTION</span>
         </div>
         <div className="gallery-grid">
           {tiles.map(([src, code, date, label], i) => (
@@ -551,7 +531,7 @@ function OperationGallery() {
             >
               <img src={src} alt={label} />
               <div className="gallery-overlay">
-                VIEW EXHIBIT <ArrowUpRight size={15} />
+                DEVICE CHECKS <ArrowUpRight size={15} />
               </div>
               <EvidenceCaption code={code} date={date} label={label} />
             </figure>
@@ -565,35 +545,35 @@ function OperationGallery() {
 function Evidence() {
   const rows = [
     [
-      "DATA SANITISATION",
-      "Devices are wiped or held for secure erasure before resale pathways are confirmed.",
-      "Wipe log / serial exception record",
+      "DATA ERASURE",
+      "Devices are erased before resale. Anything awaiting secure erasure is held separately.",
+      "Erasure records and device notes",
     ],
     [
-      "DIAGNOSTIC PLATFORM",
-      "Functional checks are run against a repeatable bench checklist for relevant models.",
-      "Diagnostic output / operator record",
+      "DEVICE TESTING",
+      "We check the main functions of each model and record any faults.",
+      "Test results and technician notes",
     ],
     [
-      "GRADING STANDARD",
-      "A–D plus BER grades are recorded against cosmetic and functional condition.",
-      "Grade key / intake photographs",
+      "CONDITION GRADING",
+      "We record cosmetic condition and working status, including devices beyond economical repair.",
+      "Condition grades and photographs",
     ],
     [
-      "BUSINESS VERIFICATION",
-      "We verify counterparties and keep the agreed business details with the lot record.",
-      "Company details / contact trail",
+      "BUSINESS DETAILS",
+      "We check seller details and keep them with the agreed stock list.",
+      "Company and contact details",
     ],
     [
-      "CHAIN OF CUSTODY",
-      "Collection references, tote or pallet IDs and reconciliation notes stay linked.",
-      "Carrier record / receiving log",
+      "COLLECTION RECORDS",
+      "We keep collection references and records of the devices received.",
+      "Collection and receipt records",
     ],
   ];
   return (
     <section className="section-light evidence-section" id="evidence">
       <div className="section-shell">
-        <SectionMeta code="SEC 09" children="EVIDENCE / COMPLIANCE" />
+        <SectionMeta code="SEC 09" children="TESTING & DATA ERASURE" />
         <div
           aria-label="Diagnostics and data erasure platforms"
           style={{
@@ -638,15 +618,15 @@ function Evidence() {
         <div className="evidence-layout">
           <div>
             <h2>
-              Specific claims.
+              Testing and
               <br />
-              <em>Retained evidence.</em>
+              <em>data erasure.</em>
             </h2>
             <div className="evidence-table">
               <div className="evidence-table-head">
-                <span>TRUST SIGNAL</span>
+                <span>CHECK</span>
                 <span>WHAT WE DO</span>
-                <span>EVIDENCE WE PROVIDE</span>
+                <span>RECORDS AVAILABLE</span>
               </div>
               {rows.map(row => (
                 <div className="evidence-table-row" key={row[0]}>
@@ -659,21 +639,21 @@ function Evidence() {
           </div>
           <aside className="evidence-pack">
             <ShieldCheck size={25} strokeWidth={1.5} />
-            <span className="data-label">SUPPLIER PACK / REQUEST</span>
+            <span className="data-label">NEED MORE DETAILS?</span>
             <h3>
-              Ask for the
+              Ask us
               <br />
-              <em>evidence pack.</em>
+              <em>for the details.</em>
             </h3>
             <p>
-              We can share the practical records that support the way we buy,
-              review, collect and settle.
+              Need testing records, erasure details or company information?
+              Contact us and tell us what your business needs.
             </p>
             <a
               className="text-link"
               href="mailto:Help@unlimitedtrends.co.uk?subject=Supplier evidence pack"
             >
-              Request supplier pack <ArrowUpRight size={17} />
+              Ask for our records <ArrowUpRight size={17} />
             </a>
           </aside>
         </div>
@@ -686,22 +666,22 @@ function BuyerProfile() {
   return (
     <section className="profile-section section-light">
       <div className="section-shell">
-        <SectionMeta code="SEC 10" children="VERIFIED BUYER PROFILE" />
+        <SectionMeta code="SEC 10" children="ABOUT UNLIMITED TRENDS" />
         <div className="profile-heading">
           <h2>
-            A buyer you
+            About
             <br />
-            <em>can file.</em>
+            <em>Unlimited Trends.</em>
           </h2>
           <span className="profile-stamp">
-            COLophon / 2026
+            UNLIMITED TRENDS
             <br />
-            VERIFIED BUYER
+            COMPANY DETAILS
           </span>
         </div>
         <div className="profile-grid">
           <div>
-            <span>ENTITY NAME</span>
+            <span>COMPANY NAME</span>
             <strong>Unlimited Trends Ltd</strong>
           </div>
           <div>
@@ -733,9 +713,9 @@ function BuyerProfile() {
             </strong>
           </div>
           <div>
-            <span>READINESS</span>
+            <span>BUSINESS CHECKS</span>
             <strong>
-              AML / KYC ready
+              Business verification available
               <br />
               Mutual NDA available
             </strong>
@@ -789,37 +769,37 @@ function Submission() {
       <div className="section-shell">
         <SectionMeta
           code="SEC 11"
-          children="SUBMISSION / MANIFEST INTAKE"
+          children="GET A QUOTE"
           dark
         />
         <div className="submission-layout">
           <div className="submission-copy">
-            <div className="eyebrow eyebrow-dark">INTAKE / NEXT ACTIONS</div>
+            <div className="eyebrow eyebrow-dark">TELL US WHAT YOU HAVE</div>
             <h2>
-              Send the
+              Ready to
               <br />
-              <em>lot through.</em>
+              <em>sell your stock?</em>
             </h2>
             <p>
-              Give us enough to make the first call useful. We will come back
-              with the missing questions, not a generic acknowledgement.
+              Tell us what you are selling and where it is. Attach a stock list
+              if you have one, or give us the main details below.
             </p>
             <div className="next-steps">
               {[
                 [
-                  "00:00",
-                  "FILE RECEIVED",
-                  "Your manifest is logged against a new intake record.",
+                  "01",
+                  "SEND YOUR DETAILS",
+                  "Include models, quantities, condition and location.",
                 ],
                 [
-                  "≤ 02:00",
-                  "FIRST REVIEW",
-                  "We check the shape, volume and obvious exceptions.",
+                  "02",
+                  "WE CHECK THE LIST",
+                  "We contact you if anything needs clarification.",
                 ],
                 [
                   "24–48H",
-                  "WRITTEN POSITION",
-                  "You receive an offer, a question set, or a clear decline.",
+                  "HEAR BACK FROM US",
+                  "We send an offer or let you know if the stock is not suitable.",
                 ],
               ].map(([time, title, copy]) => (
                 <div className="next-row" key={time}>
@@ -852,7 +832,7 @@ function Submission() {
                 <input placeholder="+44" />
               </label>
               <label>
-                <span>CATEGORY</span>
+                <span>DEVICE TYPES</span>
                 <input placeholder="e.g. iPad / mixed Apple" />
               </label>
               <label>
@@ -860,7 +840,7 @@ function Submission() {
                 <input placeholder="Approx. count" />
               </label>
               <label>
-                <span>CONDITION MIX</span>
+                <span>CONDITION</span>
                 <input placeholder="A / B / C / D / BER" />
               </label>
               <label>
@@ -876,7 +856,7 @@ function Submission() {
                 <input placeholder="Date or flexible" />
               </label>
               <label className="field-wide">
-                <span>PRICE EXPECTATION</span>
+                <span>ASKING PRICE</span>
                 <input placeholder="Optional — per unit or total" />
               </label>
             </div>
@@ -905,8 +885,8 @@ function Submission() {
                 <>
                   <FileText size={21} />
                   <div>
-                    <strong>manifest_apple_lot_240.csv</strong>
-                    <span>48 KB · 240 rows · attached</span>
+                    <strong>Stock list selected</strong>
+                    <span>Ready to send</span>
                   </div>
                   <X
                     size={18}
@@ -920,26 +900,26 @@ function Submission() {
                 <>
                   <UploadCloud size={23} />
                   <div>
-                    <strong>ATTACH CSV / XLSX MANIFEST</strong>
-                    <span>Drop file here or browse · max 10 MB</span>
+                    <strong>ATTACH YOUR STOCK LIST</strong>
+                    <span>Drop file here or browse · CSV or Excel</span>
                   </div>
                 </>
               )}
             </div>
             <div className="form-actions">
               <span>
-                By sending this form you are starting a conversation, not
-                accepting an offer.
+                Sending an enquiry does not commit you to selling. We agree the
+                price and terms with you first.
               </span>
               <button className="rule-button rule-button-voltage" type="submit">
-                <span>{sent ? "Manifest queued" : "Send intake record"}</span>
+                <span>{sent ? "Enquiry sent" : "Request a quote"}</span>
                 <ArrowUpRight size={18} />
               </button>
             </div>
             {sent && (
               <p className="success-message">
-                RECEIVED / We have your intake record. A buyer will respond
-                within the stated review window.
+                Thank you for your enquiry. We will review your stock details
+                and get back to you.
               </p>
             )}
           </form>
@@ -954,7 +934,7 @@ function FAQ() {
   return (
     <section className="section-light faq-section">
       <div className="section-shell">
-        <SectionMeta code="SEC 12" children="FAQ / SMALL PRINT" />
+        <SectionMeta code="SEC 12" children="COMMON QUESTIONS" />
         <div className="faq-layout">
           <h2>
             Questions we
@@ -986,15 +966,15 @@ function CloseSection() {
   return (
     <section className="close-section section-light">
       <div className="section-shell">
-        <SectionMeta code="SEC 13" children="CLOSE / BUYING DESK" />
+        <SectionMeta code="SEC 13" children="CONTACT US" />
         <div className="close-copy">
           <h2>
-            Have a lot?
+            Apple stock
             <br />
-            <em>Start here.</em>
+            <em>to sell?</em>
           </h2>
           <RuleButton onClick={() => scrollToId("submission")}>
-            Submit a manifest
+            Get a quote
           </RuleButton>
         </div>
         <footer className="footer-strip">
@@ -1005,7 +985,7 @@ function CloseSection() {
               HELP@UNLIMITEDTRENDS.CO.UK
             </a>
           </span>
-          <span>PRIVACY / TERMS / UT-13-2026</span>
+          <span>UNLIMITED TRENDS LTD</span>
         </footer>
       </div>
     </section>
@@ -1038,7 +1018,7 @@ export default function Home() {
         <CloseSection />
       </main>
       <a className="mobile-sticky-cta" href="#submission">
-        SUBMIT A MANIFEST <ArrowUpRight size={16} />
+        GET A QUOTE <ArrowUpRight size={16} />
       </a>
     </div>
   );
