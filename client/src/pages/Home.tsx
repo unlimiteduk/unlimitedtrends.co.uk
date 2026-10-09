@@ -594,6 +594,47 @@ function Evidence() {
     <section className="section-light evidence-section" id="evidence">
       <div className="section-shell">
         <SectionMeta code="SEC 09" children="EVIDENCE / COMPLIANCE" />
+        <div
+          aria-label="Diagnostics and data erasure platforms"
+          style={{
+            borderTop: "1px solid var(--line)",
+            borderBottom: "1px solid var(--line)",
+            padding: "24px 0",
+            marginBottom: "48px",
+          }}
+        >
+          <span className="data-label">DIAGNOSTICS &amp; DATA ERASURE</span>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "16px 48px",
+              marginTop: "12px",
+            }}
+          >
+            <a href="https://www.phonecheck.com/" aria-label="Visit Phonecheck">
+              <img
+                src="/phonecheck.svg"
+                alt="Phonecheck"
+                width={201}
+                height={46}
+                loading="lazy"
+                style={{ display: "block", width: "220px", maxWidth: "100%", height: "auto" }}
+              />
+            </a>
+            <a href="https://blancco.com/" aria-label="Visit Blancco">
+              <img
+                src="/blancco.svg"
+                alt="Blancco"
+                width={330}
+                height={130}
+                loading="lazy"
+                style={{ display: "block", width: "250px", maxWidth: "100%", height: "auto" }}
+              />
+            </a>
+          </div>
+        </div>
         <div className="evidence-layout">
           <div>
             <h2>
